@@ -6,10 +6,10 @@ const isPosts = path === '/posts' || path.startsWith('/posts/');
 ---
 <header class="nav" role="banner">
   <a class="brand" href="/" aria-label="the5amclub home">
-    <span class="brand-hash" aria-hidden="true">#</span><span class="brand-name">the5amclub</span>
+    <span class="brand-hash" aria-hidden="true">#</span><span>the5amclub</span>
   </a>
 
-  <nav class="nav-actions" aria-label="Primary">
+  <nav class="flex items-center gap-1" aria-label="Primary">
     <a class="nav-link" href="/posts" aria-current={isPosts ? 'page' : undefined}>Posts</a>
 
     <a class="icon-btn" href="https://twitter.com/the5amdotclub" target="_blank" rel="noopener" aria-label="Twitter">

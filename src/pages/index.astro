@@ -10,25 +10,30 @@ const dateFmt = new Intl.DateTimeFormat('en', { day: '2-digit', month: 'short', 
 ---
 <Base>
   <main id="main">
-    <section class="hero">
+    <section class="relative text-center pt-6 isolate">
       <div class="aurora" aria-hidden="true"></div>
 
       <p class="eyebrow">User group for early risers</p>
 
       <h1 class="clock" aria-label="Five a.m.">
-        <span class="digit">0</span><span class="digit">5</span><span class="colon" aria-hidden="true">:</span><span class="digit">0</span><span class="digit">0</span>
+        <span>0</span><span>5</span><span class="colon" aria-hidden="true">:</span><span>0</span><span>0</span>
       </h1>
 
-      <p class="lede">Wake up <em>before</em> the world does.</p>
-      <p class="sub">Tomorrow's edge is built before sunrise. <span class="accent-text">No app. No fee. Just discipline.</span></p>
+      <p class="font-serif leading-[1.15] tracking-[-0.02em] text-[clamp(28px,4vw,44px)]">
+        Wake up <em class="text-accent italic">before</em> the world does.
+      </p>
+      <p class="mt-3.5 mx-auto max-w-[560px] text-[17px] text-muted">
+        Tomorrow's edge is built before sunrise.
+        <span class="text-fg font-semibold">No app. No fee. Just discipline.</span>
+      </p>
 
-      <div class="cta-row">
-        <a class="btn primary" href="#why">Why 5 a.m.</a>
-        <a class="btn ghost" href="/posts">Read the writing</a>
+      <div class="flex flex-wrap justify-center gap-2.5 mt-8">
+        <a class="btn btn-primary" href="#why">Why 5 a.m.</a>
+        <a class="btn btn-ghost" href="/posts">Read the writing</a>
       </div>
     </section>
 
-    <section class="manifesto" id="manifesto">
+    <section id="manifesto">
       <p class="kicker"><span class="dot" aria-hidden="true"></span> Manifesto</p>
       <blockquote class="quote">
         <p>"We don't wake up at 5 a.m. because we have a lot of work to do, or to brag about how hard-working we are. It's about giving your maximum for your business to be successful — and if that means waking up at an unusual hour for most, you'll likely start liking the sunrise."</p>
@@ -36,13 +41,13 @@ const dateFmt = new Intl.DateTimeFormat('en', { day: '2-digit', month: 'short', 
       </blockquote>
     </section>
 
-    <section class="why" id="why">
-      <header class="section-head">
+    <section id="why">
+      <header class="mb-9">
         <p class="kicker"><span class="dot" aria-hidden="true"></span> Why 5 a.m.</p>
-        <h2>Seven reasons to claim the morning.</h2>
+        <h2 class="section-title">Seven reasons to claim the morning.</h2>
       </header>
 
-      <ol class="reasons">
+      <ol class="grid grid-cols-12 gap-4">
         <li class="reason reason--wide">
           <span class="num" aria-hidden="true">01</span>
           <h3>Head start</h3>
@@ -81,11 +86,11 @@ const dateFmt = new Intl.DateTimeFormat('en', { day: '2-digit', month: 'short', 
       </ol>
     </section>
 
-    <section class="video-section" id="watch">
-      <header class="section-head">
+    <section id="watch">
+      <header class="mb-9">
         <p class="kicker"><span class="dot" aria-hidden="true"></span> Watch</p>
-        <h2>5 tips on how to wake up early.</h2>
-        <p class="section-sub">Robin Sharma shares the essential keys to make early mornings stick.</p>
+        <h2 class="section-title">5 tips on how to wake up early.</h2>
+        <p class="mt-3.5 max-w-[560px] text-[17px] text-muted">Robin Sharma shares the essential keys to make early mornings stick.</p>
       </header>
 
       <a class="video-card" href="https://www.youtube.com/watch?v=z6hsOLVwfFc" target="_blank" rel="noopener" aria-label="Watch on YouTube">
@@ -98,10 +103,10 @@ const dateFmt = new Intl.DateTimeFormat('en', { day: '2-digit', month: 'short', 
     </section>
 
     {latest.length > 0 && (
-      <section class="latest">
-        <header class="section-head">
+      <section>
+        <header class="mb-9">
           <p class="kicker"><span class="dot" aria-hidden="true"></span> Writing</p>
-          <h2>Recent posts.</h2>
+          <h2 class="section-title">Recent posts.</h2>
         </header>
 
         <ol class="post-list">
@@ -122,18 +127,18 @@ const dateFmt = new Intl.DateTimeFormat('en', { day: '2-digit', month: 'short', 
       </section>
     )}
 
-    <section class="join" id="join">
-      <header class="section-head">
+    <section id="join">
+      <header class="mb-9">
         <p class="kicker"><span class="dot" aria-hidden="true"></span> How to join</p>
-        <h2>You don't need permission. Just start.</h2>
-        <p class="section-sub">Change yourself first — then change the others.</p>
+        <h2 class="section-title">You don't need permission. Just start.</h2>
+        <p class="mt-3.5 max-w-[560px] text-[17px] text-muted">Change yourself first — then change the others.</p>
       </header>
 
-      <div class="join-cta">
-        <a class="btn primary" href="https://twitter.com/intent/tweet?text=I%27m%20joining%20%23the5amclub%20%E2%98%80%EF%B8%8F&url=https%3A%2F%2Fthe5am.club" target="_blank" rel="noopener">
+      <div class="flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="https://twitter.com/intent/tweet?text=I%27m%20joining%20%23the5amclub%20%E2%98%80%EF%B8%8F&url=https%3A%2F%2Fthe5am.club" target="_blank" rel="noopener">
           Commit publicly
         </a>
-        <a class="btn ghost" href="https://github.com/avelino/the5am.club/issues" target="_blank" rel="noopener">
+        <a class="btn btn-ghost" href="https://github.com/avelino/the5am.club/issues" target="_blank" rel="noopener">
           Contribute on GitHub
         </a>
       </div>

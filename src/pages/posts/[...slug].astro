@@ -21,16 +21,16 @@ const dateFmt = new Intl.DateTimeFormat('en', { day: '2-digit', month: 'short', 
   description={post.data.description}
 >
   <main id="main">
-    <article class="post">
-      <header class="post-head">
+    <article class="max-w-reading mx-auto">
+      <header class="mb-10">
         <p class="kicker">
           <span class="dot" aria-hidden="true"></span>
           <time datetime={post.data.pubDate.toISOString()}>{dateFmt.format(post.data.pubDate)}</time>
           {post.data.updatedDate && (
-            <span> · updated {dateFmt.format(post.data.updatedDate)}</span>
+            <span>· updated {dateFmt.format(post.data.updatedDate)}</span>
           )}
         </p>
-        <h1>{post.data.title}</h1>
+        <h1 class="page-title">{post.data.title}</h1>
         {post.data.description && <p class="post-lead">{post.data.description}</p>}
       </header>
 
