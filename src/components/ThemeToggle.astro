@@ -1,0 +1,61 @@
+---
+---
+<button class="icon-btn theme-toggle" id="theme-toggle" type="button" data-theme-state="auto" aria-label="Toggle color theme" title="Toggle theme">
+  <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+    </g>
+  </svg>
+  <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+  </svg>
+  <svg class="i-auto" viewBox="0 0 24 24" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path fill="currentColor" stroke="none" d="M12 3a9 9 0 0 0 0 18Z"/>
+    </g>
+  </svg>
+</button>
+
+<script>
+  type ThemeState = 'auto' | 'light' | 'dark';
+
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function readState(): ThemeState {
+    try {
+      const v = localStorage.getItem('theme');
+      return v === 'light' || v === 'dark' ? v : 'auto';
+    } catch {
+      return 'auto';
+    }
+  }
+
+  function applyState(state: ThemeState) {
+    root.setAttribute('data-theme', state);
+    if (btn) {
+      btn.setAttribute('data-theme-state', state);
+      const resolved = state === 'auto' ? (media.matches ? 'dark' : 'light') : state;
+      btn.setAttribute('aria-label', `Theme: ${state} (currently ${resolved})`);
+    }
+    try {
+      if (state === 'auto') localStorage.removeItem('theme');
+      else localStorage.setItem('theme', state);
+    } catch {}
+  }
+
+  applyState(readState());
+
+  btn?.addEventListener('click', () => {
+    const cur = (btn.getAttribute('data-theme-state') as ThemeState) ?? 'auto';
+    const next: ThemeState = cur === 'auto' ? 'light' : cur === 'light' ? 'dark' : 'auto';
+    applyState(next);
+  });
+
+  media.addEventListener('change', () => {
+    if (readState() === 'auto') applyState('auto');
+  });
+</script>

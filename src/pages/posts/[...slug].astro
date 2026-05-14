@@ -1,0 +1,47 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+type Props = { post: CollectionEntry<'posts'> };
+const { post } = Astro.props as Props;
+const { Content } = await render(post);
+
+const dateFmt = new Intl.DateTimeFormat('en', { day: '2-digit', month: 'short', year: 'numeric' });
+---
+<Base
+  title={`${post.data.title} — #the5amclub`}
+  description={post.data.description}
+>
+  <main id="main">
+    <article class="post">
+      <header class="post-head">
+        <p class="kicker">
+          <span class="dot" aria-hidden="true"></span>
+          <time datetime={post.data.pubDate.toISOString()}>{dateFmt.format(post.data.pubDate)}</time>
+          {post.data.updatedDate && (
+            <span> · updated {dateFmt.format(post.data.updatedDate)}</span>
+          )}
+        </p>
+        <h1>{post.data.title}</h1>
+        {post.data.description && <p class="post-lead">{post.data.description}</p>}
+      </header>
+
+      <div class="prose">
+        <Content />
+        {post.data.tags.length > 0 && (
+          <div class="tags">
+            {post.data.tags.map((t) => <span>#{t}</span>)}
+          </div>
+        )}
+      </div>
+    </article>
+  </main>
+</Base>

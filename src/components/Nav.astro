@@ -1,0 +1,25 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const path = Astro.url.pathname;
+const isPosts = path === '/posts' || path.startsWith('/posts/');
+---
+<header class="nav" role="banner">
+  <a class="brand" href="/" aria-label="the5amclub home">
+    <span class="brand-hash" aria-hidden="true">#</span><span class="brand-name">the5amclub</span>
+  </a>
+
+  <nav class="nav-actions" aria-label="Primary">
+    <a class="nav-link" href="/posts" aria-current={isPosts ? 'page' : undefined}>Posts</a>
+
+    <a class="icon-btn" href="https://twitter.com/the5amdotclub" target="_blank" rel="noopener" aria-label="Twitter">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2H21l-6.49 7.42L22 22h-6.808l-4.83-6.32L4.5 22H2l6.94-7.93L2 2h6.94l4.36 5.78L18.244 2Zm-2.39 18h1.85L8.27 4H6.3l9.554 16Z"/></svg>
+    </a>
+
+    <a class="icon-btn" href="https://github.com/avelino/the5am.club" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.4-5.25 5.69.41.35.78 1.04.78 2.1 0 1.52-.01 2.74-.01 3.11 0 .31.21.68.8.56C20.21 21.39 23.5 17.07 23.5 12 23.5 5.73 18.27.5 12 .5Z"/></svg>
+    </a>
+
+    <ThemeToggle />
+  </nav>
+</header>

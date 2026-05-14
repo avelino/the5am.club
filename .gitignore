@@ -59,3 +59,12 @@ typings/
 
 # next.js build output
 .next
+
+# astro
+dist/
+.astro/
+
+# package managers
+pnpm-debug.log*
+.pnpm-store/
+

@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const dateFmt = new Intl.DateTimeFormat('en', { day: '2-digit', month: 'short', year: 'numeric' });
+---
+<Base
+  title="Posts — #the5amclub"
+  description="Writing on mornings, discipline, and the quiet hours before sunrise."
+>
+  <main id="main">
+    <section class="page-head">
+      <p class="kicker"><span class="dot" aria-hidden="true"></span> Writing</p>
+      <h1>On mornings, discipline, and quiet hours.</h1>
+    </section>
+
+    {posts.length === 0 ? (
+      <p style="max-width: var(--maxw-prose); margin: 0 auto; color: var(--text-muted);">
+        Nothing here yet. The first sunrise is on its way.
+      </p>
+    ) : (
+      <ol class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a href={`/posts/${post.id}`}>
+              <time datetime={post.data.pubDate.toISOString()}>
+                {dateFmt.format(post.data.pubDate)}
+              </time>
+              <div>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ol>
+    )}
+  </main>
+</Base>
